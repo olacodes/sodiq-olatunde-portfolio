@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Data Import Service — Case Study",
   description:
     "How I designed the Data Import Service at One Click LCA: an automated pipeline that ingests, maps, and classifies thousands of global sustainability datasets, cutting manual effort by 30%+.",
+  alternates: { canonical: "/work/data-import-service" },
 };
 
 const pipeline = [

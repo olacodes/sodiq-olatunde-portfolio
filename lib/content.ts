@@ -41,6 +41,7 @@ export type Experience = {
   location: string;
   period: string;
   employment?: string; // e.g. "Contract" — shown as a tag when present
+  caseStudy?: string; // internal case-study route
   status: "online" | "shipped";
   stack: string[];
   summary: string;
@@ -55,6 +56,7 @@ export const experience: Experience[] = [
     role: "Software Engineer",
     location: "Helsinki, Finland · Remote",
     period: "Jul 2022 — Present",
+    caseStudy: "/work/data-import-service",
     status: "online",
     stack: ["Python", "FastAPI", "PostgreSQL", "Docker", "Autodesk APS"],
     summary:
@@ -76,6 +78,7 @@ export const experience: Experience[] = [
     location: "Berlin, Germany · Remote",
     period: "Sep 2022 — Dec 2024",
     employment: "Contract",
+    caseStudy: "/work/heycar-payments",
     status: "shipped",
     stack: ["Python", "Hexagonal Arch", "Stripe", "PostgreSQL", "Kubernetes"],
     summary:

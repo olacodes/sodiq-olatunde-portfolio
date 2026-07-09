@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Heycar Payments — Case Study",
   description:
     "How I unified Heycar's payment and order systems across the UK, France, and Germany and refactored them into a Hexagonal architecture — cutting operational cost by 50% and enabling any payment gateway.",
+  alternates: { canonical: "/work/heycar-payments" },
 };
 
 // Ports-and-adapters view of the refactor

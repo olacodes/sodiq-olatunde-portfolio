@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
+import { motion } from "motion/react";
 import { experience, type Experience as Exp } from "@/lib/content";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
@@ -103,45 +104,55 @@ function ServiceNode({ exp, delay }: { exp: Exp; delay: number }) {
             ))}
           </div>
 
-          {/* details toggle */}
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            className="group mt-6 flex items-center gap-2 font-mono text-xs tracking-wide text-ochre transition-colors hover:text-ink"
-          >
-            <span
-              className={`inline-block transition-transform ${
-                open ? "rotate-90" : ""
-              }`}
+          {/* details toggle + case study link */}
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              className="group flex items-center gap-2 font-mono text-xs tracking-wide text-ochre transition-colors hover:text-ink"
             >
-              ▸
-            </span>
-            {open ? "Hide details" : "View details"}
-          </button>
-
-          <AnimatePresence initial={false}>
-            {open && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
+              <span
+                className={`inline-block transition-transform ${
+                  open ? "rotate-90" : ""
+                }`}
               >
-                <ul className="mt-5 space-y-3 border-t border-line pt-5">
-                  {exp.detail.map((d, i) => (
-                    <li key={i} className="flex gap-3 text-sm text-muted">
-                      <span className="mt-1 font-mono text-[0.6rem] text-ochre">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="leading-relaxed">{d}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+                ▸
+              </span>
+              {open ? "Hide details" : "View details"}
+            </button>
+            {exp.caseStudy && (
+              <Link
+                href={exp.caseStudy}
+                className="group flex items-center gap-1.5 font-mono text-xs tracking-wide text-signal transition-transform hover:translate-x-0.5"
+              >
+                Read the case study →
+              </Link>
             )}
-          </AnimatePresence>
+          </div>
+
+          {/* Stays mounted so the bullets are in the server HTML (SEO);
+              collapsed state hides them via height with inert blocking
+              interaction. */}
+          <motion.div
+            initial={false}
+            animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+            aria-hidden={!open}
+            inert={!open}
+          >
+            <ul className="mt-5 space-y-3 border-t border-line pt-5">
+              {exp.detail.map((d, i) => (
+                <li key={i} className="flex gap-3 text-sm text-muted">
+                  <span className="mt-1 font-mono text-[0.6rem] text-ochre">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="leading-relaxed">{d}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </Reveal>
     </li>

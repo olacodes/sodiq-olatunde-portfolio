@@ -45,7 +45,6 @@ export const metadata: Metadata = {
     "Software engineer and founder with 7+ years across sustainability data pipelines (One Click LCA), cross-border payment platforms (Heycar), and his own products (Osmani, Chattosales).",
   authors: [{ name: "Sodiq Olatunde", url: SITE }],
   creator: "Sodiq Olatunde",
-  alternates: { canonical: SITE },
   openGraph: {
     type: "website",
     url: SITE,
