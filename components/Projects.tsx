@@ -30,7 +30,7 @@ export function Projects() {
                 className="group node-frame panel flex h-full flex-col overflow-hidden rounded-lg transition-transform hover:-translate-y-1"
               >
                 {p.preview && (
-                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-line bg-base-2">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-line bg-base-2">
                     <Image
                       src={p.preview}
                       alt={`${p.name} — product screenshot`}
@@ -40,18 +40,18 @@ export function Projects() {
                     />
                   </div>
                 )}
-                <div className="flex flex-1 flex-col p-7">
+                <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-center justify-between">
                     <span className="mono-label text-ochre">{p.kind}</span>
                     <span className="font-mono text-xs text-faint transition-transform group-hover:translate-x-1">
                       visit ↗
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-3xl font-semibold md:text-4xl">
+                  <h3 className="mt-4 font-display text-2xl font-semibold">
                     {p.name}
                   </h3>
-                  <p className="mt-3 max-w-md text-muted">{p.blurb}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <p className="mt-2 max-w-md text-sm text-muted">{p.blurb}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
                     {p.stack.map((s) => (
                       <Chip key={s}>{s}</Chip>
                     ))}
